@@ -93,10 +93,13 @@ print("")
 
 filename = str(str(dirname) + "/vk_also_liked/" + str(groupid) + ".txt")
 filedir = os.path.dirname(filename)
-if not os.path.exists(filename):
-    os.makedirs(filedir)
+if not os.path.exists(os.path.dirname(filename)):
+    try:
+        os.makedirs(os.path.dirname(filename))
+    except OSError as exc:
+        raise
     
-outfile = file(filename,'w+')
+outfile = file(filename,'w')
 
 
 print("------ TOP 100 -----")
